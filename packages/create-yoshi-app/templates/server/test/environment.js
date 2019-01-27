@@ -3,29 +3,23 @@ const testkit = require('@wix/wix-bootstrap-testkit');
 // https://github.com/wix-platform/wix-node-platform/tree/master/config/wix-config-emitter
 const configEmitter = require('@wix/wix-config-emitter');
 
-export const app = bootstrapServer();
-
-export function beforeAndAfter() {
-  before(() => emitConfigs());
-  app.beforeAndAfter();
-}
-
 // take erb configurations from source folder, replace values/functions,
 // remove the ".erb" extension and emit files inside the target folder
-function emitConfigs() {
+export function emitConfigs({ targetFolder }) {
   return configEmitter({
     sourceFolders: ['./templates'],
-    targetFolder: './target/configs',
+    targetFolder,
   }).emit();
 }
 
 // start the server as an embedded app
-function bootstrapServer() {
+export function bootstrapServer({ port, managementPort, appConfDir }) {
   return testkit.app('./index', {
     env: {
-      PORT: 3100,
-      MANAGEMENT_PORT: 3104,
+      PORT: port,
+      MANAGEMENT_PORT: managementPort,
       NEW_RELIC_LOG_LEVEL: 'warn',
+      APP_CONF_DIR: appConfDir,
       DEBUG: '',
     },
   });

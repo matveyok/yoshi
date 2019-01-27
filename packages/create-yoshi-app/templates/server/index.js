@@ -1,9 +1,16 @@
 const path = require('path');
 const bootstrap = require('@wix/wix-bootstrap-ng');
 
-const src = process.env.SRC_PATH || path.join('.', 'dist', 'src');
-const server = path.join(src, 'server');
+let server
+
+if (process.env.NODE_ENV === 'test') {
+  server = path.join('.', 'src');
+} else {
+  server = path.join('.', 'dist', 'src');
+}
+
+server = path.join(server, 'server');
 
 bootstrap()
   .express(server)
-  .start({ disableCluster: process.env.NODE_ENV === 'development' });
+  .start({ disableCluster: process.env.NODE_ENV !== 'production' });
