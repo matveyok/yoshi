@@ -2,13 +2,7 @@ const webpackOptions = require('webpack/schemas/WebpackOptions.json');
 
 const schema = {
   additionalProperties: false,
-  definitions: {
-    Externals: webpackOptions.definitions.Externals,
-    Entry: webpackOptions.definitions.Entry,
-    OptimizationSplitChunksOptions:
-      webpackOptions.definitions.OptimizationSplitChunksOptions,
-    PerformanceOptions: webpackOptions.definitions.PerformanceOptions,
-  },
+  definitions: webpackOptions.definitions,
   type: 'object',
   properties: {
     extends: {
