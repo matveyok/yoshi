@@ -197,4 +197,4 @@ const schema = {
   },
 };
 
-module.exports = module.exports = schema;
+module.exports = schema;
