@@ -60,6 +60,7 @@ describe('Loaders', () => {
             require('./beep.mp3');
             require('./image.svg?version=1.0.2&some-other-param=value');
             require('./icon.svg');
+            require('./file.unknown');
             require('./icon.inline.svg');
             require('./icon.inlineW.svg');`,
           'src/server.js': `
@@ -110,6 +111,7 @@ describe('Loaders', () => {
           'src/beep.mp3': createAboveTheLimitFile(),
           'src/image.svg': createAboveTheLimitFile(),
           'src/icon.svg': createAboveTheLimitFile(),
+          'src/file.unknown': createAboveTheLimitFile(),
           'src/icon.inline.svg': createAboveTheLimitFile(),
           'src/icon.inlineW.svg': createAboveTheLimitFile(),
           '.babelrc': `{"plugins": ["babel-plugin-transform-es2015-block-scoping"]}`,
@@ -313,6 +315,11 @@ describe('Loaders', () => {
       it('should load svg files', () => {
         const content = test.content('dist/statics/app.bundle.js');
         expect(content).to.contain(fileAboveTheLimit('icon.svg'));
+      });
+
+      it('should load unknown files', () => {
+        const content = test.content('dist/statics/app.bundle.js');
+        expect(content).to.contain(fileAboveTheLimit('file.unknown'));
       });
 
       it('should not load "inline.svg" suffixed files', () => {
