@@ -419,11 +419,26 @@ function createCommonWebpackConfig({
               test: /\.inline\.svg$/,
               loader: 'svg-inline-loader',
             },
-
+            {
+              test: /\.md$/,
+              loader: 'raw-loader',
+            },
+            {
+              test: /\.haml$/,
+              loader: 'ruby-haml-loader',
+            },
+            {
+              test: /\.html$/,
+              loader: 'html-loader',
+            },
+            {
+              test: /\.(graphql|gql)$/,
+              include: project.unprocessedModules,
+              loader: 'graphql-tag/loader',
+            },
             // Try to inline assets as base64 or return a public URL to it if it passes
             // the 10kb limit
             {
-              test: reAssets,
               loader: 'url-loader',
               options: {
                 name: '[path][name].[ext]?[hash]',
@@ -431,30 +446,6 @@ function createCommonWebpackConfig({
               },
             },
           ],
-        },
-
-        // Rules for Markdown
-        {
-          test: /\.md$/,
-          loader: 'raw-loader',
-        },
-
-        // Rules for HAML
-        {
-          test: /\.haml$/,
-          loader: 'ruby-haml-loader',
-        },
-
-        // Rules for HTML
-        {
-          test: /\.html$/,
-          loader: 'html-loader',
-        },
-
-        // Rules for GraphQL
-        {
-          test: /\.(graphql|gql)$/,
-          loader: 'graphql-tag/loader',
         },
       ],
     },
