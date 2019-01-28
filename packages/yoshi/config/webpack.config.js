@@ -36,6 +36,7 @@ const {
 const { addEntry } = require('../src/webpack-utils');
 
 const reScript = /\.js?$/;
+const reAllScripts = /\.(js|mjs|jsx|ts|tsx)$/;
 const reStyle = /\.(css|less|scss|sass)$/;
 const reAssets = /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|otf|eot|wav|mp3)$/;
 
@@ -438,13 +439,20 @@ function createCommonWebpackConfig({
             },
             // Try to inline assets as base64 or return a public URL to it if it passes
             // the 10kb limit
+            // This loader doesn't use a "test" so it will catch all modules
+            // that fall through the other loaders.
             {
               loader: 'url-loader',
+              // Exclude `html` and `json` extensions so they get processed
+              // by webpacks internal loaders.
+              exclude: [reAllScripts, reStyle, /\.html$/, /\.json$/],
               options: {
                 name: '[path][name].[ext]?[hash]',
                 limit: 10000,
               },
             },
+            // ** STOP ** Are you adding a new loader?
+            // Make sure to add the new loader(s) before the url-loader.
           ],
         },
       ],
