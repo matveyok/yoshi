@@ -73,7 +73,7 @@ module.exports = {
             ),
           },
 
-          setupTestFrameworkScriptFile: setupTestsFile,
+          setupFilesAfterEnv: [setupTestsFile],
 
           moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
         };
