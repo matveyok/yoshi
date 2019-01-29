@@ -65,7 +65,7 @@ module.exports = {
 
           transform: {
             '^.+\\.jsx?$': require.resolve('babel-jest'),
-            '^.+\\.tsx?$': require.resolve('ts-jest'),
+            '^.+\\.(tsx|ts)?$': require.resolve('ts-jest'),
             '\\.st.css?$': require.resolve('@stylable/jest'),
             '\\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|otf|eot|wav|mp3)$': require.resolve(
               './transforms/file',
