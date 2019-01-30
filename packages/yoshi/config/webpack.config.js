@@ -434,7 +434,6 @@ function createCommonWebpackConfig({
             },
             {
               test: /\.(graphql|gql)$/,
-              include: project.unprocessedModules,
               loader: 'graphql-tag/loader',
             },
             // Try to inline assets as base64 or return a public URL to it if it passes
