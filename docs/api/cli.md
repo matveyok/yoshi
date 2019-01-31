@@ -218,7 +218,7 @@ yoshi: {
 
   Every other argument you'll pass to `yoshi test --jest` will be forwarded to jest, For example:
 
-  `yoshi test --jest --forceExit foo.spec.js`
+  `yoshi test --jest foo.spec.js`
 
   Will run jest on `foo.spec.js` file and will apply [`forceExit`](https://jestjs.io/docs/en/cli#forceexit).
 
