@@ -606,7 +606,7 @@ describe('Aggregator: Test', () => {
             `,
         });
 
-        const buildResponse = project.execute('build', [], {
+        const buildResponse = project.verbose().execute('build', [], {
           ...insideTeamCity,
           ...teamCityArtifactVersion,
         });
@@ -616,7 +616,7 @@ describe('Aggregator: Test', () => {
           staticsDomain,
         );
 
-        const testResponse = project.execute('test', ['--jest'], {
+        const testResponse = project.verbose().execute('test', ['--jest'], {
           ...insideTeamCity,
           ...teamCityArtifactVersion,
         });

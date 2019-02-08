@@ -44,6 +44,10 @@ module.exports = {
             ? `<rootDir>/${setupTestsPath}`
             : undefined;
 
+        // Since Jest 24 setupTestFrameworkScriptFile changed to setupFilesAfterEnv and
+        // now it supports more than 1 test file, in future we can expose it here
+        const setupFilesAfterEnv = setupTestsFile ? [setupTestsFile] : []
+
         return {
           ...project,
 
@@ -64,7 +68,7 @@ module.exports = {
             ),
           },
 
-          setupTestFrameworkScriptFile: setupTestsFile,
+          setupFilesAfterEnv,
 
           moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
         };
