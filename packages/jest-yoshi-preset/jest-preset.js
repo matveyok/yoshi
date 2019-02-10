@@ -51,7 +51,10 @@ module.exports = {
         return {
           ...project,
 
-          transformIgnorePatterns: ['/node_modules/(?!(.*?\\.st\\.css$))'],
+          transformIgnorePatterns: [
+            '/node_modules/(?!(.*?\\.st\\.css$))',
+            require.resolve('babel-preset-yoshi'),
+          ],
 
           transform: {
             '^.+\\.jsx?$': require.resolve('./transforms/babel'),
