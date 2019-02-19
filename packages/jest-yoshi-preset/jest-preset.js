@@ -52,7 +52,8 @@ module.exports = {
           ...project,
 
           transformIgnorePatterns: [
-            '/node_modules/(?!(.*?\\.st\\.css$))'
+            '/node_modules/(?!(.*?\\.st\\.css$))',
+            require.resolve('babel-preset-yoshi'),
           ],
 
           transform: {
