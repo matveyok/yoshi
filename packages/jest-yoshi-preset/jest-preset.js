@@ -53,7 +53,8 @@ module.exports = {
 
           transformIgnorePatterns: [
             '/node_modules/(?!(.*?\\.st\\.css$))',
-            '/packages/'
+            // we want to ignore symlinked packages (probably a bug in jest, which doesn't ignore symlinked packages)
+            '/yoshi\\/packages/'
           ],
 
           transform: {
