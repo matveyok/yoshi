@@ -18,7 +18,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "pretest": "yoshi build && build-storybook",
-    "test": "yoshi test",
+    "test": "yoshi test --mocha",
     "posttest": "yoshi lint",
     "start": "yoshi start & npm run storybook",
     "release": "yoshi release && teamcity-surge-autorelease --dist=storybook-static",
