@@ -53,8 +53,9 @@ module.exports = {
 
           transformIgnorePatterns: [
             '/node_modules/(?!(.*?\\.st\\.css$))',
-            // we want to ignore symlinked packages (probably a bug in jest, which doesn't ignore symlinked packages)
-            '/yoshi\\/packages/',
+            // Locally 'babel-preset-yoshi' is symlinked, what causes jest to try and run babel on it.
+            // See here for more details: https://github.com/facebook/jest/blob/6af2f677e5c48f71f526d4be82d29079c1cdb658/packages/jest-core/src/runGlobalHook.js#L61
+            '/babel-preset-yoshi/',
           ],
 
           transform: {
