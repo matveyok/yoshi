@@ -545,9 +545,6 @@ describe('Aggregator: Test', () => {
             `,
           })
           .execute('test', ['--jest']);
-        console.log('------------------------------------');
-        console.log(res);
-        console.log('------------------------------------');
         expect(res.code).to.equal(0);
       });
 
@@ -613,9 +610,6 @@ describe('Aggregator: Test', () => {
           ...teamCityArtifactVersion,
         });
 
-        console.log('------------------------------------1');
-        console.log(buildResponse);
-        console.log('------------------------------------');
         expect(buildResponse.code).to.equal(0);
         expect(test.content('./dist/statics/app.bundle.min.js')).to.contain(
           staticsDomain,
@@ -626,9 +620,6 @@ describe('Aggregator: Test', () => {
           ...teamCityArtifactVersion,
         });
 
-        console.log('------------------------------------1');
-        console.log(testResponse);
-        console.log('------------------------------------');
         expect(testResponse.code).to.equal(0);
       }).timeout(40000);
     });
